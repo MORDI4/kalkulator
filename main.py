@@ -2,16 +2,24 @@ import logging
 logging.basicConfig(level=logging.DEBUG) 
 
 math_op = ['', '+', '-', '*', '/']
-option = int(input("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: "))
-num1 = int(input("Podaj pierwszą liczbę: "))
-num2 = int(input("Podaj drugą liczbę: "))
+
+while True:
+    try:
+        option = int(input("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: "))
+        num1 = int(input("Podaj pierwszą liczbę: "))
+        num2 = int(input("Podaj drugą liczbę: "))
+        break
+    except ValueError:
+        logging.error("Podana wartość nie jest liczbą")
+        continue
+
 logging.debug(f"Podane działanie to {num1} {math_op[option]} {num2}" )
 
 sum = 0
 next_num = ''
 if option == 1:
     sum = num1 + num2
-    while next_num != 'koniec':
+    while True:
         try:
             next_num = input("Masz możliwość dodania więcej liczb. Wpisuj je kolejno zatwierdzając enterem, a ja skończysz to wpisz 'koniec': ")
             if next_num == 'koniec':
